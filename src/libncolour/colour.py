@@ -1,10 +1,10 @@
 from typing import Tuple
 
-class colour:
+class Colour:
     # base class for all colours
     pass
 
-class HSV:
+class HSV(Colour):
     def __init__(self,Hue: int|float,Saturation: int|float,Value: int|float):
         self.h: int|float = Hue
         self.s: int|float = Saturation
@@ -12,7 +12,7 @@ class HSV:
         
         self.t:Tuple[float,float,float] = (Hue,Saturation,Value)
 
-class RGB:
+class RGB(Colour):
     def __init__(self,Red:int,Green:int,Blue:int):
         self.r:int = Red
         self.g:int = Green
@@ -36,7 +36,7 @@ def average(colours:list):
     for current in colours:
         curcol = (0,0,0)
         
-        if current is tuple or isinstance(current,colour):
+        if current is tuple or isinstance(current,Colour):
             curcol = current
 
         else:
