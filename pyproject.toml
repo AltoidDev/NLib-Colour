@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "LibNColour"
+version = "1.0.0"
+authors = [
+  { name="Sylvia 'Nova' L.", email="100539243+AltoidDev@users.noreply.github.com" },
+]
+description = "A package with NLib colour functions"
+readme = "README.org"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
