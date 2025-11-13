@@ -9,6 +9,7 @@ class HSV:
         self.h: int|float = Hue
         self.s: int|float = Saturation
         self.v: int|float = Value
+        
         self.t:Tuple[float,float,float] = (Hue,Saturation,Value)
 
 class RGB:
@@ -16,6 +17,7 @@ class RGB:
         self.r:int = Red
         self.g:int = Green
         self.b:int = Blue
+        
         self.t:Tuple[int,int,int] = (Red,Green,Blue)
 
 def checkall(list:list|tuple,type):
@@ -60,10 +62,13 @@ def average(colours:list):
             
     else:
         print("\nNot all values in list are of the same type, so they'll just be averaged as raw numbers.\n")
+        
         if checkall(validcolours[1],float):
             total:Tuple[float,float,float] = (0.0,0.0,0.0)
+            
         else:
             total:Tuple[int,int,int] = (0,0,0)
+            
         for x in validcolours:
             total[0] += x[0]
             total[1] += x[1]
