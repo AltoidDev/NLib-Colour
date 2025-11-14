@@ -31,7 +31,10 @@ def checkall(list:list|tuple,type):
 
 
 def average(colours:list):
+    # returns an average of all colours in colours:list as the appropriate Colour class if they're all the same type
+    # otherwise returns a tuple average of the raw values 
     validcolours:list = []
+    type:str = ""
     
     for current in colours:
         curcol = (0,0,0)
@@ -45,20 +48,18 @@ def average(colours:list):
         validcolours.append(curcol)
         
     if checkall(validcolours,RGB):
-        total:Tuple[int,int,int] = (0,0,0)
+        total:Tuple[int,int,int]|RGB = (0,0,0)
+        type = "RGB"
         
         for x in validcolours:
-            total[0] += x.r
-            total[1] += x.g
-            total[2] += x.b
+            total = tuple((total[0]+x.r,total[1]+x.g,total[2]+x.b))
             
     elif checkall(validcolours,HSV):
-        total:Tuple[float,float,float] = (0.0,0.0,0.0)
+        total:Tuple[float,float,float]|HSV = (0.0,0.0,0.0)
+        type = "HSV"
         
         for x in validcolours:
-            total[0] += x.h
-            total[1] += x.s
-            total[2] += x.v
+            total = tuple((total[0]+x.h,total[1]+x.s,total[2]+x.v))
             
     else:
         print("\nNot all values in list are of the same type, so they'll just be averaged as raw numbers.\n")
@@ -70,12 +71,18 @@ def average(colours:list):
             total:Tuple[int,int,int] = (0,0,0)
             
         for x in validcolours:
-            total[0] += x[0]
-            total[1] += x[1]
-            total[2] += x[2]
-            
-    total[0] = total[0] / len(validcolours)
-    total[1] = total[1] / len(validcolours)
-    total[2] = total[2] / len(validcolours)
+            total = tuple((total[0]+x[0],total[1]+x[1],total[2]+x[2]))
 
+    l = len(validcolours)
+    if type == "RGB":
+        total = tuple(( int(total[0]/l), int(total[1]/l), int(total[2]/l) ))
+    else:
+        total = tuple(( total[0]/l, total[1]/l, total[2]/l ))
+
+    if type == "HSV":
+        total = HSV(total[0],total[1],total[2])
+    elif type == "RGB":
+        total = RGB(total[0],total[1],total[2])
+
+        
     return(total)
